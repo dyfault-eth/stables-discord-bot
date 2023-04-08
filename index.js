@@ -25,15 +25,15 @@ async function fetchSell() {
         // get all sales on rarible's api
         const response = await fetch("https://api.rarible.org/v0.1/activities/byCollection?collection=TEZOS:KT1MQL8VjVQckk5A6uBfN9Qv2YUVJstG1CyH&type=SELL")
         const data = await response.json()
-        const lastSell = data.activities[0] // save last sales
+        const lastSell = data.activities[0] // save last sale
 
         console.log(lastSell.date, "last sell date")
 
         if (lastSell.date > lastModifiedSell) {
-            lastModifiedSell = lastSell.date // save new last sales date
+            lastModifiedSell = lastSell.date // save new last sale date
             console.log("last sell date :", lastModifiedSell)
 
-            // get sales date on the right format
+            // get sale date on the right format
             let mdate = new Date(lastSell.date).toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' });
 
             // get token id and image of the nft
@@ -80,15 +80,15 @@ async function fetchList() {
         // get all list on rarible's api
         const response = await fetch("https://api.rarible.org/v0.1/activities/byCollection?collection=TEZOS:KT1MQL8VjVQckk5A6uBfN9Qv2YUVJstG1CyH&type=LIST")
         const data = await response.json()
-        const lastList = data.activities[0] // save last sales
+        const lastList = data.activities[0] // save last sale
 
         console.log(lastList.date, "last list date")
 
         if (lastList.date > lastModifiedList) {
-            lastModifiedList = lastList.date // save new last sales date
+            lastModifiedList = lastList.date // save new last sale date
             console.log("last list date :", lastModifiedList)
 
-            // get sales date on the right format
+            // get sale date on the right format
             let mdate = new Date(lastList.date).toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' });
 
             // get token id and image of the nft
