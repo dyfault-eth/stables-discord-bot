@@ -11,30 +11,36 @@ const bot = new Client({
     ],
 });
 
+// get id in .env file you've created before
 const token = process.env.TOKEN
 const chanID = process.env.CHANID
 
+// initialize first date 
 var lastModifiedSell = "2023-04-06T11:42:04Z"
 var lastModifiedList = "2023-04-06T11:42:04Z"
 var lastModifiedCancelList = "2023-04-06T11:42:04Z"
 
 async function fetchSell() {
     try {
+        // get all the sales on rarible's api
         const response = await fetch("https://api.rarible.org/v0.1/activities/byCollection?collection=TEZOS:KT1MQL8VjVQckk5A6uBfN9Qv2YUVJstG1CyH&type=SELL")
         const data = await response.json()
-        const lastSell = data.activities[0]
+        const lastSell = data.activities[0] // save the last sales
 
         console.log(lastSell.date, "last sell date")
 
         if (lastSell.date > lastModifiedSell) {
-            lastModifiedSell = lastSell.date
+            lastModifiedSell = lastSell.date // save the new last sales date
             console.log("last sell date :", lastModifiedSell)
 
+            // get the sales date on the right format
             let mdate = new Date(lastSell.date).toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' });
 
+            // get the token id and the image of the nft
             let tokenId = lastSell.nft.type.tokenId
             let imgUrl = `https://nft-picture.playstables.io/nft/collection/001/horse/${tokenId}.jpg`
 
+            // create the message 
             let embed = new EmbedBuilder()
                 .setColor('#24B600')
                 .setTitle('New Sales')
@@ -56,6 +62,7 @@ async function fetchSell() {
                 .setThumbnail(imgUrl)
                 .setFooter({ text: mdate })
 
+            // send the message to the channel setup before
             bot.channels.cache.get(chanID).send({
                 embeds: [embed]
             })
@@ -70,21 +77,25 @@ async function fetchSell() {
 
 async function fetchList() {
     try {
+        // get all the list on rarible's api
         const response = await fetch("https://api.rarible.org/v0.1/activities/byCollection?collection=TEZOS:KT1MQL8VjVQckk5A6uBfN9Qv2YUVJstG1CyH&type=LIST")
         const data = await response.json()
-        const lastList = data.activities[0]
+        const lastList = data.activities[0] // save the last sales
 
         console.log(lastList.date, "last list date")
 
         if (lastList.date > lastModifiedList) {
-            lastModifiedList = lastList.date
+            lastModifiedList = lastList.date // save the new last sales date
             console.log("last list date :", lastModifiedList)
 
+            // get the sales date on the right format
             let mdate = new Date(lastList.date).toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' });
 
+            // get the token id and the image of the nft
             let tokenId = lastList.make.type.tokenId
             let imgUrl = `https://nft-picture.playstables.io/nft/collection/001/horse/${tokenId}.jpg`
 
+            // create the message
             let embed = new EmbedBuilder()
                 .setColor('#CCF000')
                 .setTitle('Listing')
@@ -104,6 +115,7 @@ async function fetchList() {
                 .setThumbnail(imgUrl)
                 .setFooter({ text: mdate })
 
+            // send the message to the channel setup before
             bot.channels.cache.get(chanID).send({
                 embeds: [embed]
             })
@@ -158,9 +170,11 @@ async function fetchList() {
     }
 } **/
 
+// when the bot are ready run setinterval function
 bot.on('ready', async() => {
 
 
+    // every 60sec run all function below    
     setInterval(async function() {
         try {
 
@@ -177,4 +191,5 @@ bot.on('ready', async() => {
     console.log("discord bot ready");
 });
 
+// run the bot
 bot.login(token);
