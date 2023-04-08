@@ -6,13 +6,15 @@ in the stables-discord-bot directory run :
 
 `npm i`
 
-create .env file and add token id of your discord bot and the chan id of the channel where you want the bot send message.
+create `.env` file and add token id of your discord bot and the chan id of the channel where you want the bot send messages.
 
 for example :
 
+```
 TOKEN = *your token*
 
 CHANID = *your chan id*
+```
 
 ## In the second time
  when you had setup .env file
