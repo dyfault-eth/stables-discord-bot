@@ -15,9 +15,9 @@ In `.env` file and add token id of your discord bot and the chan id of the chann
 for example :
 
 ```
-TOKEN = *your token*
+TOKEN = your token
 
-CHANID = *your chan id*
+CHANID = your chan id
 ```
 
 ## In the second time
