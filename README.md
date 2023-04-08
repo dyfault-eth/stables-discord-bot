@@ -2,11 +2,15 @@
 
 ## In the first time
 
-in the stables-discord-bot directory run :
+### install all dependencies
+
+In the stables-discord-bot directory run :
 
 `npm i`
 
-create `.env` file and add token id of your discord bot and the chan id of the channel where you want the bot send messages.
+### create .env file
+
+In `.env` file and add token id of your discord bot and the chan id of the channel where you want the bot send messages.
 
 for example :
 
@@ -21,8 +25,8 @@ CHANID = *your chan id*
  
 install node v+18
 
-## To start the bot
-run in command line 
+### To start the bot
+run in command line to the root directory
 
 `node index.js`
 
