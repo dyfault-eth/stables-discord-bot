@@ -1,33 +1,33 @@
-# If you want to setup the bot for you
+# If you want to set up the bot for yourself
 
-## In the first time
+## Installation
 
-### install all dependencies
+In the `stables-discord-bot` directory, run the following command:
 
-In the stables-discord-bot directory run :
-
-`npm i`
+```bash
+npm i
+```
 
 ### create .env file
 
-In `.env` file and add token id of your discord bot and the chan id of the channel where you want the bot send messages.
+Create a `.env` file and add the token ID of your Discord bot and the channel ID of the channel where you want the bot to send messages.
 
-for example :
+For example :
 
 ```
-TOKEN = your token
+TOKEN = your-token
 
-CHANID = your chan id
+CHANID = your-chan-id
 ```
 
-## In the second time
- when you had setup .env file
+## Usage
+Once you have set up the `.env` file:
  
-install node v+18
+Make sure you have Node.js installed (version 18 or higher).
+To start the bot, run the following command from the root directory:
 
-### To start the bot
-run in command line to the root directory
+```
+node index.js
+```
 
-`node index.js`
-
-when you see `discord bot ready` in console the bot is running
+When you see `Discord bot ready` in the console, it means the bot is running.
